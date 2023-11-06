@@ -40,22 +40,22 @@ public class VendingMachine
       currentCoins.addCoin(coin);
    }
    public double removeMoney(){
-
       double value = currentCoins.getValue();
-      coins.removeAllCoins();
+      currentCoins.removeAllCoins();
       return value;
    }
-   public void buyProduct(Product product){
-      if(!products.isEmpty()) {
+   public void buyProduct(Product product) {
          for (int i = 0; i < products.size(); i++) {
             if (product.equals(products.get(i))) {
-               if (currentCoins.getValue() >= product.getPrice()) {
+               if (product.getPrice() <= currentCoins.getValue()) {
                   products.remove(i);
                   currentCoins.removeAllCoins();
+                  return;
+               } else {
+                  throw new VendingException("Insufficient money");
                }
-            }else throw new Error();
+            }
          }
-      }
+         throw new VendingException("No Such Product");
    }
-
 }

@@ -37,7 +37,7 @@ public class CoinSet
    }
 
    public void removeAllCoins(){
-       set.clear();
+       set = new ArrayList<>();
    }
 
    //ADD REMAINING CODE HERE
